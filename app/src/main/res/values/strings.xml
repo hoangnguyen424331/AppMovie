@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">AppMovie</string>
+    <string name="app_name">THE CINEMA</string>
+    <string name="home">Home</string>
+    <string name="hot">Hot</string>
+    <string name="genres">Genres</string>
+    <string name="favorite">Favorite</string>
+    <string name="title_app">T H E   C I N E M A</string>
+    <string name="search">Search</string>
+    <string name="popular">popular</string>
+    <string name="top_rate">Top Rate</string>
+    <string name="up_coming">Up Coming</string>
+    <string name="overview">Overview: \n</string>
+    <string name="no_video">No video!</string>
+    <string name="genres_tittle">Choose a genres</string>
+    <string name="personal_info">Personal Info</string>
+    <string name="birthday">Birthday</string>
+    <string name="place_of_birth">Place of Birth</string>
+    <string name="gender">Gender</string>
+    <string name="known_for">Known For</string>
+    <string name="biography">Biography</string>
+    <string name="result">Result</string>
 </resources>
