@@ -14,6 +14,24 @@ class MovieRepository private constructor(
         hotMovieType: HotMovieType,
         listener: OnFetchDataJsonListener<MutableList<HotMovie?>>
     ) {
+<<<<<<< HEAD
+        remote.getHotMovies(page, hotMovieType, listener)
+    }
+
+    companion object {
+        private var instance: MovieRepository? = null
+
+        fun getInstance(
+            remote: MovieDataSource.Remote
+        ): MovieRepository {
+            return instance ?: synchronized(this) {
+                instance ?: MovieRepository(remote).also {
+                    instance = it
+                }
+            }
+        }
+=======
         remote.getHotMoves(page, hotMovieType, listener)
+>>>>>>> master
     }
 }

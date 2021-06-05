@@ -12,7 +12,11 @@ class MovieRemoteDataSource : MovieDataSource.Remote {
 
     private val endParams = Constant.BASE_API_KEY + Constant.BASE_LANGUAGE
 
+<<<<<<< HEAD
+    override fun getHotMovies(
+=======
     override fun getHotMoves(
+>>>>>>> master
         page: Int,
         hotMovieType: HotMovieType,
         listener: OnFetchDataJsonListener<MutableList<HotMovie?>>
@@ -24,5 +28,14 @@ class MovieRemoteDataSource : MovieDataSource.Remote {
 
     companion object {
         private const val MOVIE_TYPE = "movie/"
+<<<<<<< HEAD
+
+        private var instance: MovieRemoteDataSource? = null
+
+        fun getInstance() = instance ?: MovieRemoteDataSource().also {
+            instance = it
+        }
+=======
+>>>>>>> master
     }
 }
