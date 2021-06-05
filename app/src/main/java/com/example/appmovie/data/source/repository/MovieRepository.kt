@@ -14,6 +14,7 @@ class MovieRepository private constructor(
         hotMovieType: HotMovieType,
         listener: OnFetchDataJsonListener<MutableList<HotMovie?>>
     ) {
+<<<<<<< HEAD
         remote.getHotMovies(page, hotMovieType, listener)
     }
 
@@ -29,5 +30,8 @@ class MovieRepository private constructor(
                 }
             }
         }
+=======
+        remote.getHotMoves(page, hotMovieType, listener)
+>>>>>>> master
     }
 }

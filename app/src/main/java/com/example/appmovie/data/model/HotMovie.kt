@@ -8,7 +8,11 @@ data class HotMovie(
 )
 
 object HotMovieEntry {
+<<<<<<< HEAD
     const val MOVIE = "results"
+=======
+    const val MOVIE = "result"
+>>>>>>> master
     const val ID = "id"
     const val TITLE = "title"
     const val VOTE = "vote_average"

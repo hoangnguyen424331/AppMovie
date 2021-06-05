@@ -8,7 +8,11 @@ import com.example.appmovie.utils.KeyEntityType
 import org.json.JSONObject
 
 @Suppress("UNCHECKED_CAST")
+<<<<<<< HEAD
 class GetJsonFromUrl<T>(
+=======
+class GetJsonFromUrl<T> constructor(
+>>>>>>> master
     private val listener: OnFetchDataJsonListener<T>,
     private val keyEntityType: KeyEntityType
 ) : AsyncTask<String?, Void?, String?>() {
@@ -26,6 +30,7 @@ class GetJsonFromUrl<T>(
         return data
     }
 
+<<<<<<< HEAD
     override fun onPostExecute(data: String?) {
         super.onPostExecute(data)
         if (data != null && data.isNotBlank()) {
@@ -33,5 +38,14 @@ class GetJsonFromUrl<T>(
             listener.onSuccess(ParseDataWithJson().parseJsonToData(jsonObject, keyEntityType) as T)
         } else
             listener.onError(exception)
+=======
+    override fun onPostExecute(result: String?) {
+        super.onPostExecute(result)
+        if (result != null && result.isNotBlank()) {
+            val jsonObject = JSONObject(result)
+            listener.onSuccess(ParseDataWithJson().parseJsonToData(jsonObject, keyEntityType) as T)
+        } else
+            exception?.let { listener.onError(it) }
+>>>>>>> master
     }
 }

@@ -70,6 +70,10 @@ class ParseDataWithJson {
             }
         } catch (e: JSONException) {
             e.printStackTrace()
+<<<<<<< HEAD
+=======
+            null
+>>>>>>> master
         }
     }
 
