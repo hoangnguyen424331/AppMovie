@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import java.lang.ref.WeakReference
 
+@Suppress("DEPRECATION")
 abstract class BaseFragment : Fragment() {
 
     abstract fun getLayoutId(): Int
