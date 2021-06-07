@@ -4,5 +4,5 @@ import java.lang.Exception
 
 interface OnFetchDataJsonListener<T> {
     fun onSuccess(data: T)
-    fun onError(exception: Exception)
+    fun onError(exception: Exception?)
 }
