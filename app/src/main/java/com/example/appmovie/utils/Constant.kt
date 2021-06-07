@@ -1,5 +1,7 @@
 package com.example.appmovie.utils
 
+import com.example.appmovie.BuildConfig
+
 object Constant {
     const val BASE_URL = "https://api.themoviedb.org/3/"
     const val BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w500/"
