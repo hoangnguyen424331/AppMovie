@@ -1,6 +1,7 @@
 package com.example.appmovie.data.source.remote.fetchjson
 
 import com.example.appmovie.data.model.GenresEntry
+import com.example.appmovie.data.model.GenresMovieEntry
 import com.example.appmovie.data.model.HotMovieEntry
 import com.example.appmovie.utils.KeyEntityType
 import org.json.JSONArray
@@ -52,6 +53,9 @@ class ParseDataWithJson {
                     KeyEntityType.GENRES_ITEM -> {
                         ParseJson().genresParseJson(it)
                     }
+                    KeyEntityType.GENES_MOVIE_ITEM -> {
+                        ParseJson().genresMovieParseJson(it)
+                    }
                     else -> null
                 }
             }
@@ -73,6 +77,12 @@ class ParseDataWithJson {
                 KeyEntityType.GENRES_ITEM -> {
                     parseJsonToArray(
                         jsonObject?.getJSONArray(GenresEntry.LIST_GENRES),
+                        keyEntityType
+                    )
+                }
+                KeyEntityType.GENES_MOVIE_ITEM -> {
+                    parseJsonToArray(
+                        jsonObject?.getJSONArray(GenresMovieEntry.MOVIE),
                         keyEntityType
                     )
                 }

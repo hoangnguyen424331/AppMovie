@@ -1,6 +1,6 @@
 package com.example.appmovie.data.source
 
-import com.example.appmovie.data.model.Genres
+import com.example.appmovie.data.model.GenresMovie
 import com.example.appmovie.data.model.HotMovie
 import com.example.appmovie.data.source.remote.OnFetchDataJsonListener
 import com.example.appmovie.utils.HotMovieType
@@ -16,6 +16,12 @@ interface MovieDataSource {
 
         fun <T> getGenres(
             listener: OnFetchDataJsonListener<T>
+        )
+
+        fun getGenresMovie(
+            page: Int,
+            query: String,
+            listener: OnFetchDataJsonListener<MutableList<GenresMovie?>>
         )
     }
 }

@@ -1,9 +1,6 @@
 package com.example.appmovie.data.source.remote.fetchjson
 
-import com.example.appmovie.data.model.Genres
-import com.example.appmovie.data.model.GenresEntry
-import com.example.appmovie.data.model.HotMovie
-import com.example.appmovie.data.model.HotMovieEntry
+import com.example.appmovie.data.model.*
 import org.json.JSONObject
 
 class ParseJson {
@@ -21,6 +18,14 @@ class ParseJson {
         Genres(
             getInt(GenresEntry.ID),
             getString(GenresEntry.NAME)
+        )
+    }
+
+    fun genresMovieParseJson(jsonObject: JSONObject) = jsonObject.run {
+        GenresMovie(
+            getInt(GenresMovieEntry.ID),
+            getString(GenresMovieEntry.TITLE),
+            getString(GenresMovieEntry.URL_IMAGE)
         )
     }
 }
