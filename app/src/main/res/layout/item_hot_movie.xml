@@ -3,19 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/dp_50"
     android:background="@color/blue_dark">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageHotMovie"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_5"
         android:scaleType="centerCrop"
         app:layout_constraintDimensionRatio="725:1000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewRateMovie"
         app:layout_constraintWidth_percent="0.5" />
 
     <androidx.appcompat.widget.AppCompatRatingBar
@@ -39,6 +38,7 @@
         android:background="@drawable/custom_text_view_rate"
         android:gravity="center"
         android:textColor="@color/black"
+        android:layout_marginTop="@dimen/dp_50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
