@@ -3,6 +3,7 @@ package com.example.appmovie.ui.homepage
 import android.view.View
 import com.example.appmovie.R
 import com.example.appmovie.base.BaseFragment
+import com.example.appmovie.ui.genres.GenresFragment
 import com.example.appmovie.ui.hotmovie.HotFragment
 import com.example.appmovie.utils.ItemBottomNav
 import kotlinx.android.synthetic.main.fragment_home_page.*
@@ -19,7 +20,8 @@ class HomePageFragment : BaseFragment() {
 
     private fun onInitViewPager() {
         val listFragment = listOf(
-            HotFragment.newInstance()
+            HotFragment.newInstance(),
+            GenresFragment.newInstance()
         )
         fragmentManager?.let {
             viewPagerHomePage.adapter = HomePageAdapter(it, listFragment)

@@ -3,8 +3,8 @@ package com.example.appmovie.data.model
 data class Genres(
     val id: Int?,
     val name: String?,
-    val selected: Boolean = false,
-    val positionSelected: Int? = null
+    var selected: Boolean = false,
+    var positionSelected: Int? = null
 )
 
 object GenresEntry {
