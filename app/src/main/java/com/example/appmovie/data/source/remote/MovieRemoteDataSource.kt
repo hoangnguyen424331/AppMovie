@@ -1,10 +1,12 @@
 package com.example.appmovie.data.source.remote
 
+import com.example.appmovie.data.model.DetailMovie
 import com.example.appmovie.data.model.GenresMovie
 import com.example.appmovie.data.model.HotMovie
 import com.example.appmovie.data.source.MovieDataSource
 import com.example.appmovie.data.source.remote.fetchjson.GetJsonFromUrl
 import com.example.appmovie.utils.Constant
+import com.example.appmovie.utils.DetailMovieType
 import com.example.appmovie.utils.HotMovieType
 import com.example.appmovie.utils.KeyEntityType
 
@@ -38,7 +40,21 @@ class MovieRemoteDataSource : MovieDataSource.Remote {
         val baseUrl = Constant.BASE_URL + DISCOVER_MOVIE + endParams +
                 Constant.BASE_SORT_POPULAR +
                 Constant.BASE_PAGE + page + Constant.BASE_GENRES + query
-        GetJsonFromUrl(listener,KeyEntityType.GENES_MOVIE_ITEM).execute(baseUrl)
+        GetJsonFromUrl(listener, KeyEntityType.GENES_MOVIE_ITEM).execute(baseUrl)
+    }
+
+    override fun <T> getDataDetailMovie(
+        idMovie: Int,
+        detailMovieType: DetailMovieType,
+        listener: OnFetchDataJsonListener<T>
+    ) {
+        val baseUrl = Constant.BASE_URL + MOVIE_TYPE + idMovie + detailMovieType.path + endParams
+
+        when (detailMovieType) {
+            DetailMovieType.MOVIE_DETAIL -> GetJsonFromUrl(
+                listener, KeyEntityType.MOVIE_DETAIL
+            ).execute(baseUrl)
+        }
     }
 
     companion object {
