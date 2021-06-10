@@ -1,6 +1,7 @@
 package com.example.appmovie.data.source.remote.fetchjson
 
 import com.example.appmovie.data.model.*
+import com.example.appmovie.utils.KeyEntityType
 import org.json.JSONObject
 
 class ParseJson {
@@ -26,6 +27,25 @@ class ParseJson {
             getInt(GenresMovieEntry.ID),
             getString(GenresMovieEntry.TITLE),
             getString(GenresMovieEntry.URL_IMAGE)
+        )
+    }
+
+    fun detailMovieParseJson(jsonObject: JSONObject) = jsonObject.run {
+        val listGenres = ParseDataWithJson().parseJsonToArray(
+            getJSONArray(GenresEntry.LIST_GENRES),
+            KeyEntityType.GENRES_ITEM
+        ) as List<Genres>
+
+        DetailMovie(
+            id = getInt(DetailMovieEntry.ID),
+            title = getString(DetailMovieEntry.TITLE),
+            posterUrl = getString(DetailMovieEntry.POSTER_URL),
+            backdropUrl = getString(DetailMovieEntry.BACKDROP_URL),
+            voteAverage = getDouble(DetailMovieEntry.VOTE_AVERAGE),
+            overview = getString(DetailMovieEntry.OVERVIEW),
+            releaseDate = getString(DetailMovieEntry.RELEASE_DATE),
+            tagline = getString(DetailMovieEntry.TAG_LINE),
+            genres = listGenres
         )
     }
 }

@@ -1,10 +1,12 @@
 package com.example.appmovie.data.source.repository
 
+import com.example.appmovie.data.model.DetailMovie
 import com.example.appmovie.data.model.Genres
 import com.example.appmovie.data.model.GenresMovie
 import com.example.appmovie.data.model.HotMovie
 import com.example.appmovie.data.source.MovieDataSource
 import com.example.appmovie.data.source.remote.OnFetchDataJsonListener
+import com.example.appmovie.utils.DetailMovieType
 import com.example.appmovie.utils.HotMovieType
 
 class MovieRepository private constructor(
@@ -30,6 +32,13 @@ class MovieRepository private constructor(
         listener: OnFetchDataJsonListener<MutableList<GenresMovie?>>
     ) {
         remote.getGenresMovie(page, query, listener)
+    }
+
+    fun getDetailMovie(
+        id: Int,
+        listener: OnFetchDataJsonListener<MutableList<DetailMovie?>>,
+    ) {
+        remote.getDataDetailMovie(id, DetailMovieType.MOVIE_DETAIL, listener)
     }
 
     companion object {
