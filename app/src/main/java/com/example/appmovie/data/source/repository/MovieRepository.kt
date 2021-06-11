@@ -1,9 +1,6 @@
 package com.example.appmovie.data.source.repository
 
-import com.example.appmovie.data.model.DetailMovie
-import com.example.appmovie.data.model.Genres
-import com.example.appmovie.data.model.GenresMovie
-import com.example.appmovie.data.model.HotMovie
+import com.example.appmovie.data.model.*
 import com.example.appmovie.data.source.MovieDataSource
 import com.example.appmovie.data.source.remote.OnFetchDataJsonListener
 import com.example.appmovie.utils.DetailMovieType
@@ -36,9 +33,30 @@ class MovieRepository private constructor(
 
     fun getDetailMovie(
         id: Int,
-        listener: OnFetchDataJsonListener<MutableList<DetailMovie?>>,
+        listener: OnFetchDataJsonListener<DetailMovie>,
     ) {
         remote.getDataDetailMovie(id, DetailMovieType.MOVIE_DETAIL, listener)
+    }
+
+    fun getVideo(
+        idMovieDetails: Int,
+        listener: OnFetchDataJsonListener<List<VideoMovie>>
+    ) {
+        remote.getDataDetailMovie(idMovieDetails, DetailMovieType.VIDEO, listener)
+    }
+
+    fun getRecommend(
+        idMovieDetails: Int,
+        listener: OnFetchDataJsonListener<List<HotMovie>>
+    ) {
+        remote.getDataDetailMovie(idMovieDetails, DetailMovieType.RECOMMEND, listener)
+    }
+
+    fun getActor(
+        idMovieDetails: Int,
+        listener: OnFetchDataJsonListener<List<Actor>>
+    ) {
+        remote.getDataDetailMovie(idMovieDetails, DetailMovieType.ACTOR, listener)
     }
 
     companion object {

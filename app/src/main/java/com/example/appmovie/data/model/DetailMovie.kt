@@ -9,7 +9,7 @@ data class DetailMovie(
     val overview: String?,
     val tagline: String?,
     val releaseDate: String?,
-    val voteAverage: Double?,
+    val voteAverage: Double,
     val isFavourite: Boolean = false
 )
 
