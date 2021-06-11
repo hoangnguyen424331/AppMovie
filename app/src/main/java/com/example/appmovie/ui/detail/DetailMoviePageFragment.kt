@@ -54,7 +54,13 @@ class DetailMoviePageFragment : BaseFragment(), DetailMovieContact.View {
         recommendAdapter.setData(movies)
     }
 
-    override fun loadVideoOnSuccess(video: VideoMovie?) {}
+    override fun loadVideoOnSuccess(video: VideoMovie?) {
+        imagePlay.setOnClickListener {
+            video?.let {
+                openYoutube(it.key)
+            } ?: Toast.makeText(context, getString(R.string.no_video), Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onError(exception: Exception?) {
         Toast.makeText(activity, exception?.message, Toast.LENGTH_SHORT).show()
@@ -98,10 +104,28 @@ class DetailMoviePageFragment : BaseFragment(), DetailMovieContact.View {
         }
     }
 
-    private fun openYoutube(idYoutube: String?) {}
+    private fun openYoutube(idYoutube: String?) {
+        try {
+            context?.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(URI_YOUTUBE_APP + idYoutube)
+                )
+            )
+        } catch (e: ActivityNotFoundException) {
+            context?.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(URI_YOUTUBE_WEB + idYoutube)
+                )
+            )
+        }
+    }
 
     companion object {
         private const val BUNDLE_ID_DETAIL_MOVIE = "BUNDLE_ID_DETAIL_MOVIE"
+        private const val URI_YOUTUBE_WEB = "http://www.youtube.com/watch?v="
+        private const val URI_YOUTUBE_APP = "vnd.youtube:"
 
         fun newInstance(id: Int) = DetailMoviePageFragment().apply {
             arguments = bundleOf(BUNDLE_ID_DETAIL_MOVIE to id)
