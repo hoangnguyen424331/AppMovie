@@ -1,6 +1,5 @@
 package com.example.appmovie.data.source
 
-import com.example.appmovie.data.model.DetailMovie
 import com.example.appmovie.data.model.GenresMovie
 import com.example.appmovie.data.model.HotMovie
 import com.example.appmovie.data.source.remote.OnFetchDataJsonListener
