@@ -6,7 +6,7 @@ import org.json.JSONObject
 
 class ParseJson {
 
-    fun movieParseJson(jsonObject: JSONObject) = jsonObject.run {
+    fun movieParseJson(jsonObject: JSONObject?) = jsonObject?.run {
         HotMovie(
             getInt(HotMovieEntry.ID),
             getString(HotMovieEntry.TITLE),
@@ -15,14 +15,14 @@ class ParseJson {
         )
     }
 
-    fun genresParseJson(jsonObject: JSONObject) = jsonObject.run {
+    fun genresParseJson(jsonObject: JSONObject?) = jsonObject?.run {
         Genres(
             getInt(GenresEntry.ID),
             getString(GenresEntry.NAME)
         )
     }
 
-    fun genresMovieParseJson(jsonObject: JSONObject) = jsonObject.run {
+    fun genresMovieParseJson(jsonObject: JSONObject?) = jsonObject?.run {
         GenresMovie(
             getInt(GenresMovieEntry.ID),
             getString(GenresMovieEntry.TITLE),
@@ -30,7 +30,7 @@ class ParseJson {
         )
     }
 
-    fun detailMovieParseJson(jsonObject: JSONObject) = jsonObject.run {
+    fun detailMovieParseJson(jsonObject: JSONObject?) = jsonObject?.run {
         val listGenres = ParseDataWithJson().parseJsonToArray(
             getJSONArray(GenresEntry.LIST_GENRES),
             KeyEntityType.GENRES_ITEM
@@ -46,6 +46,33 @@ class ParseJson {
             releaseDate = getString(DetailMovieEntry.RELEASE_DATE),
             tagline = getString(DetailMovieEntry.TAG_LINE),
             genres = listGenres
+        )
+    }
+
+    fun actorParseJson(jsonObject: JSONObject?) = jsonObject?.run {
+        Actor(
+            id = getInt(ActorEntry.ID),
+            name = getString(ActorEntry.NAME),
+            imageUrl = getString(ActorEntry.IMAGE_URL)
+        )
+    }
+
+    fun detailActorParseJson(jsonObject: JSONObject?) = jsonObject?.run {
+        DetailActor(
+            id = getInt(DetailActorEntry.ID),
+            name = getString(DetailActorEntry.NAME),
+            imageUrl = getString(DetailActorEntry.IMAGE_URL),
+            birthday = getString(DetailActorEntry.BIRTHDAY),
+            gender = getInt(DetailActorEntry.GENDER),
+            address = getString(DetailActorEntry.ADDRESS)
+        )
+    }
+
+    fun videoParseJson(jsonObject: JSONObject?) = jsonObject?.run {
+        VideoMovie(
+            getString(VideoMovieEntry.ID),
+            getString(VideoMovieEntry.KEY),
+            getString(VideoMovieEntry.TYPE)
         )
     }
 }

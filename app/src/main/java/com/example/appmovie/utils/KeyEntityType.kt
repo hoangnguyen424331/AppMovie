@@ -7,5 +7,6 @@ enum class KeyEntityType {
     GENES_MOVIE_ITEM,
     ACTOR,
     ACTOR_DETAIL,
+    VIDEO,
     SEARCH_MOVIE_ITEM
 }

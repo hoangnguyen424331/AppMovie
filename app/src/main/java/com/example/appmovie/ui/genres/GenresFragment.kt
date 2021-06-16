@@ -10,6 +10,8 @@ import com.example.appmovie.data.model.Genres
 import com.example.appmovie.data.model.GenresMovie
 import com.example.appmovie.data.source.remote.MovieRemoteDataSource
 import com.example.appmovie.data.source.repository.MovieRepository
+import com.example.appmovie.extensions.addFragment
+import com.example.appmovie.ui.detail.DetailMoviePageFragment
 import com.example.appmovie.ui.genres.adapter.GenresAdapter
 import com.example.appmovie.ui.genres.adapter.GenresMovieAdapter
 import com.example.appmovie.ui.genres.adapter.GenresSelectedAdapter
@@ -73,11 +75,14 @@ class GenresFragment : BaseFragment(), GenresContact.View {
     private fun initView() {
         adapterGenres = GenresAdapter(requireContext(), onClickGenres)
         adapterGenresSelected = GenresSelectedAdapter(onClickSelectedGenres)
-        adapterGenresMovie = GenresMovieAdapter {}
+        adapterGenresMovie = GenresMovieAdapter {
+            addFragment(DetailMoviePageFragment.newInstance(it), R.id.mainFragment)
+        }
 
         recyclerViewGenres.adapter = adapterGenres
         recyclerViewSelected.adapter = adapterGenresSelected
         recyclerViewGenresMovie.apply {
+            setHasFixedSize(true)
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = adapterGenresMovie
 
