@@ -5,7 +5,6 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Point
 import android.net.Uri
-import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -15,8 +14,6 @@ import com.example.appmovie.data.model.Actor
 import com.example.appmovie.data.model.DetailMovie
 import com.example.appmovie.data.model.HotMovie
 import com.example.appmovie.data.model.VideoMovie
-import com.example.appmovie.data.source.remote.MovieRemoteDataSource
-import com.example.appmovie.data.source.repository.MovieRepository
 import com.example.appmovie.extensions.addFragment
 import com.example.appmovie.extensions.loadFromUrl
 import com.example.appmovie.ui.detail.adapter.RecommendAdapter
@@ -40,25 +37,6 @@ class DetailMoviePageFragment : BaseFragment(), DetailMovieContact.View {
     }
 
     override fun getLayoutId() = R.layout.fragment_movie_details
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        detailMoviePresenter = DetailMoviePresenter(
-            MovieRepository.getInstance(MovieRemoteDataSource.getInstance()),
-        )
-        arguments?.let {
-            idMovie = it.getInt(BUNDLE_ID_DETAIL_MOVIE)
-        }
-        detailMoviePresenter?.let {
-            it.onView(this)
-            idMovie?.let { id ->
-                it.getMovieDetail(id)
-                it.getVideoMovie(id)
-                it.getListRecommend(id)
-            }
-        }
-    }
 
     override fun onViewCreated(view: View) {
         onInitView()
