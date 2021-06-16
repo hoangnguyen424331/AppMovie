@@ -11,7 +11,7 @@ import com.example.appmovie.data.model.GenresMovie
 import com.example.appmovie.data.source.remote.MovieRemoteDataSource
 import com.example.appmovie.data.source.repository.MovieRepository
 import com.example.appmovie.extensions.addFragment
-import com.example.appmovie.ui.detail.movie.DetailMoviePageFragment
+import com.example.appmovie.ui.detail.DetailMoviePageFragment
 import com.example.appmovie.ui.genres.adapter.GenresAdapter
 import com.example.appmovie.ui.genres.adapter.GenresMovieAdapter
 import com.example.appmovie.ui.genres.adapter.GenresSelectedAdapter
