@@ -1,6 +1,5 @@
 package com.example.appmovie.data.source.remote
 
-import com.example.appmovie.data.model.DetailMovie
 import com.example.appmovie.data.model.GenresMovie
 import com.example.appmovie.data.model.HotMovie
 import com.example.appmovie.data.source.MovieDataSource
@@ -53,6 +52,18 @@ class MovieRemoteDataSource : MovieDataSource.Remote {
         when (detailMovieType) {
             DetailMovieType.MOVIE_DETAIL -> GetJsonFromUrl(
                 listener, KeyEntityType.MOVIE_DETAIL
+            ).execute(baseUrl)
+            DetailMovieType.VIDEO -> GetJsonFromUrl(
+                listener,
+                KeyEntityType.VIDEO
+            ).execute(baseUrl)
+            DetailMovieType.ACTOR -> GetJsonFromUrl(
+                listener,
+                KeyEntityType.ACTOR
+            ).execute(baseUrl)
+            DetailMovieType.RECOMMEND -> GetJsonFromUrl(
+                listener,
+                KeyEntityType.MOVIE_ITEM
             ).execute(baseUrl)
         }
     }

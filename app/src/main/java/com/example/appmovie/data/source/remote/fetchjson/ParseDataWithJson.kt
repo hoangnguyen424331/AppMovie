@@ -1,8 +1,6 @@
 package com.example.appmovie.data.source.remote.fetchjson
 
-import com.example.appmovie.data.model.GenresEntry
-import com.example.appmovie.data.model.GenresMovieEntry
-import com.example.appmovie.data.model.HotMovieEntry
+import com.example.appmovie.data.model.*
 import com.example.appmovie.utils.KeyEntityType
 import org.json.JSONArray
 import org.json.JSONException
@@ -59,6 +57,15 @@ class ParseDataWithJson {
                     KeyEntityType.MOVIE_DETAIL -> {
                         ParseJson().detailMovieParseJson(it)
                     }
+                    KeyEntityType.ACTOR -> {
+                        ParseJson().actorParseJson(it)
+                    }
+                    KeyEntityType.ACTOR_DETAIL -> {
+                        ParseJson().detailActorParseJson(it)
+                    }
+                    KeyEntityType.VIDEO -> {
+                        ParseJson().videoParseJson(it)
+                    }
                     else -> null
                 }
             }
@@ -92,6 +99,24 @@ class ParseDataWithJson {
                 KeyEntityType.MOVIE_DETAIL -> {
                     parseJsonToObject(
                         jsonObject,
+                        keyEntityType
+                    )
+                }
+                KeyEntityType.ACTOR -> {
+                    parseJsonToArray(
+                        jsonObject?.getJSONArray(ActorEntry.ACTORS),
+                        keyEntityType
+                    )
+                }
+                KeyEntityType.ACTOR_DETAIL -> {
+                    parseJsonToObject(
+                        jsonObject,
+                        keyEntityType
+                    )
+                }
+                KeyEntityType.VIDEO -> {
+                    parseJsonToArray(
+                        jsonObject?.getJSONArray(VideoMovieEntry.VIDEOS),
                         keyEntityType
                     )
                 }

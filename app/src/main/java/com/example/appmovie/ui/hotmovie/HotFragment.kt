@@ -12,6 +12,8 @@ import com.example.appmovie.base.BaseFragment
 import com.example.appmovie.data.model.HotMovie
 import com.example.appmovie.data.source.remote.MovieRemoteDataSource
 import com.example.appmovie.data.source.repository.MovieRepository
+import com.example.appmovie.extensions.addFragment
+import com.example.appmovie.ui.detail.movie.DetailMoviePageFragment
 import com.example.appmovie.ui.hotmovie.adapter.HotMovieAdapter
 import com.example.appmovie.utils.Constant
 import com.example.appmovie.utils.HotMovieType
@@ -23,7 +25,13 @@ class HotFragment : BaseFragment(), HotMovieContact.View {
     private var page = Constant.DEFAULT_PAGE
     private var hotMovieType = HotMovieType.POPULAR
     private var isLoading = false
-    private val adapterHotMovie by lazy { HotMovieAdapter {} }
+    private val adapterHotMovie by lazy {
+        HotMovieAdapter {
+            it.id?.apply {
+                addFragment(DetailMoviePageFragment.newInstance(this), R.id.mainFragment)
+            }
+        }
+    }
 
     override fun getLayoutId() = R.layout.fragment_hot_movie
 
