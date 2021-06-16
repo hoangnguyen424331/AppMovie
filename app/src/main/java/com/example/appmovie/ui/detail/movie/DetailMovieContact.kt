@@ -1,4 +1,4 @@
-package com.example.appmovie.ui.detail
+package com.example.appmovie.ui.detail.movie
 
 import com.example.appmovie.data.model.Actor
 import com.example.appmovie.data.model.DetailMovie

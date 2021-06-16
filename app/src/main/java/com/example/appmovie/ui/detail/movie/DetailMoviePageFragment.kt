@@ -1,4 +1,4 @@
-package com.example.appmovie.ui.detail
+package com.example.appmovie.ui.detail.movie
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
@@ -19,7 +19,7 @@ import com.example.appmovie.data.source.remote.MovieRemoteDataSource
 import com.example.appmovie.data.source.repository.MovieRepository
 import com.example.appmovie.extensions.addFragment
 import com.example.appmovie.extensions.loadFromUrl
-import com.example.appmovie.ui.detail.adapter.RecommendAdapter
+import com.example.appmovie.ui.detail.movie.adapter.RecommendAdapter
 import com.example.appmovie.utils.Constant
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import java.lang.Exception

@@ -13,7 +13,7 @@ import com.example.appmovie.data.model.HotMovie
 import com.example.appmovie.data.source.remote.MovieRemoteDataSource
 import com.example.appmovie.data.source.repository.MovieRepository
 import com.example.appmovie.extensions.addFragment
-import com.example.appmovie.ui.detail.DetailMoviePageFragment
+import com.example.appmovie.ui.detail.movie.DetailMoviePageFragment
 import com.example.appmovie.ui.hotmovie.adapter.HotMovieAdapter
 import com.example.appmovie.utils.Constant
 import com.example.appmovie.utils.HotMovieType
