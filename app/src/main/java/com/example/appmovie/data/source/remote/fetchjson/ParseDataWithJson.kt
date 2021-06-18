@@ -66,6 +66,9 @@ class ParseDataWithJson {
                     KeyEntityType.VIDEO -> {
                         ParseJson().videoParseJson(it)
                     }
+                    KeyEntityType.EXTERNAL -> {
+                        ParseJson().detailExternalParseJson(it)
+                    }
                     else -> null
                 }
             }
@@ -117,6 +120,12 @@ class ParseDataWithJson {
                 KeyEntityType.VIDEO -> {
                     parseJsonToArray(
                         jsonObject?.getJSONArray(VideoMovieEntry.VIDEOS),
+                        keyEntityType
+                    )
+                }
+                KeyEntityType.EXTERNAL -> {
+                    parseJsonToObject(
+                        jsonObject,
                         keyEntityType
                     )
                 }
