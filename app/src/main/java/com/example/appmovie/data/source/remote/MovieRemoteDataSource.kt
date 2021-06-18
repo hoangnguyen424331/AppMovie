@@ -4,10 +4,7 @@ import com.example.appmovie.data.model.GenresMovie
 import com.example.appmovie.data.model.HotMovie
 import com.example.appmovie.data.source.MovieDataSource
 import com.example.appmovie.data.source.remote.fetchjson.GetJsonFromUrl
-import com.example.appmovie.utils.Constant
-import com.example.appmovie.utils.DetailMovieType
-import com.example.appmovie.utils.HotMovieType
-import com.example.appmovie.utils.KeyEntityType
+import com.example.appmovie.utils.*
 
 @Suppress("DEPRECATION")
 class MovieRemoteDataSource : MovieDataSource.Remote {
@@ -68,10 +65,30 @@ class MovieRemoteDataSource : MovieDataSource.Remote {
         }
     }
 
+    override fun <T> getDataInActor(
+        idActor: Int,
+        actorDetailType: ActorDetailType,
+        listener: OnFetchDataJsonListener<T>
+    ) {
+        val baseUrl = Constant.BASE_URL + ACTOR_TYPE + idActor + actorDetailType.path + endParams
+
+        when (actorDetailType) {
+            ActorDetailType.ACTOR -> GetJsonFromUrl(
+                listener,
+                KeyEntityType.ACTOR_DETAIL
+            ).execute(baseUrl)
+            ActorDetailType.EXTERNAL -> GetJsonFromUrl(
+                listener,
+                KeyEntityType.EXTERNAL
+            ).execute(baseUrl)
+        }
+    }
+
     companion object {
         private const val MOVIE_TYPE = "movie/"
         private const val GENRES_TYPE = "genre/movie/list?"
         private const val DISCOVER_MOVIE = "discover/movie?"
+        private const val ACTOR_TYPE = "person/"
         private var instance: MovieRemoteDataSource? = null
 
         fun getInstance() = instance ?: MovieRemoteDataSource().also {
