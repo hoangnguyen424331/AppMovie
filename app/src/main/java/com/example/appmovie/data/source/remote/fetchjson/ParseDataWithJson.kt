@@ -69,7 +69,9 @@ class ParseDataWithJson {
                     KeyEntityType.EXTERNAL -> {
                         ParseJson().detailExternalParseJson(it)
                     }
-                    else -> null
+                    KeyEntityType.SEARCH_MOVIE_ITEM -> {
+                        ParseJson().searchMovieParseJson(it)
+                    }
                 }
             }
         } catch (e: JSONException) {
@@ -129,7 +131,12 @@ class ParseDataWithJson {
                         keyEntityType
                     )
                 }
-                else -> null
+                KeyEntityType.SEARCH_MOVIE_ITEM -> {
+                    parseJsonToArray(
+                        jsonObject?.getJSONArray(SearchMovieEntry.MOVIE),
+                        keyEntityType
+                    )
+                }
             }
         } catch (e: JSONException) {
             e.printStackTrace()

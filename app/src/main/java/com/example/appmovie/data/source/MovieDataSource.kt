@@ -2,6 +2,7 @@ package com.example.appmovie.data.source
 
 import com.example.appmovie.data.model.GenresMovie
 import com.example.appmovie.data.model.HotMovie
+import com.example.appmovie.data.model.SearchMovie
 import com.example.appmovie.data.source.remote.OnFetchDataJsonListener
 import com.example.appmovie.utils.ActorDetailType
 import com.example.appmovie.utils.DetailMovieType
@@ -36,6 +37,12 @@ interface MovieDataSource {
             idActor: Int,
             actorDetailType: ActorDetailType,
             listener: OnFetchDataJsonListener<T>
+        )
+
+        fun getDataSearch(
+            page: Int,
+            query: String,
+            listener: OnFetchDataJsonListener<MutableList<SearchMovie?>>
         )
     }
 }
