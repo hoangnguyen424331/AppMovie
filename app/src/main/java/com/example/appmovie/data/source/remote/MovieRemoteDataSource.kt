@@ -2,6 +2,7 @@ package com.example.appmovie.data.source.remote
 
 import com.example.appmovie.data.model.GenresMovie
 import com.example.appmovie.data.model.HotMovie
+import com.example.appmovie.data.model.SearchMovie
 import com.example.appmovie.data.source.MovieDataSource
 import com.example.appmovie.data.source.remote.fetchjson.GetJsonFromUrl
 import com.example.appmovie.utils.*
@@ -84,11 +85,22 @@ class MovieRemoteDataSource : MovieDataSource.Remote {
         }
     }
 
+    override fun getSearchMovie(
+        page: Int,
+        query: String,
+        listener: OnFetchDataJsonListener<MutableList<SearchMovie?>>
+    ) {
+        val baseUrl = Constant.BASE_URL + SEARCH_TYPE + endParams +
+                Constant.BASE_PAGE + page + Constant.BASE_QUERY + query
+        GetJsonFromUrl(listener, KeyEntityType.SEARCH_MOVIE_ITEM).execute(baseUrl)
+    }
+
     companion object {
         private const val MOVIE_TYPE = "movie/"
         private const val GENRES_TYPE = "genre/movie/list?"
         private const val DISCOVER_MOVIE = "discover/movie?"
         private const val ACTOR_TYPE = "person/"
+        private const val SEARCH_TYPE = "search/movie?"
         private var instance: MovieRemoteDataSource? = null
 
         fun getInstance() = instance ?: MovieRemoteDataSource().also {
