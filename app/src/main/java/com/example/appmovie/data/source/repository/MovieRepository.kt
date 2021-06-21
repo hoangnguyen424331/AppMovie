@@ -3,6 +3,7 @@ package com.example.appmovie.data.source.repository
 import com.example.appmovie.data.model.*
 import com.example.appmovie.data.source.MovieDataSource
 import com.example.appmovie.data.source.remote.OnFetchDataJsonListener
+import com.example.appmovie.utils.ActorDetailType
 import com.example.appmovie.utils.DetailMovieType
 import com.example.appmovie.utils.HotMovieType
 
@@ -57,6 +58,28 @@ class MovieRepository private constructor(
         listener: OnFetchDataJsonListener<List<Actor>>
     ) {
         remote.getDataDetailMovie(idMovieDetails, DetailMovieType.ACTOR, listener)
+    }
+
+    fun getActorDetail(
+        idActor: Int,
+        listener: OnFetchDataJsonListener<DetailActor>
+    ) {
+        remote.getDataInActor(idActor, ActorDetailType.ACTOR, listener)
+    }
+
+    fun getExternal(
+        idActor: Int,
+        listener: OnFetchDataJsonListener<External>
+    ) {
+        remote.getDataInActor(idActor, ActorDetailType.EXTERNAL, listener)
+    }
+
+    fun getSearchMovie(
+        page: Int,
+        query: String,
+        listener: OnFetchDataJsonListener<MutableList<SearchMovie?>>
+    ) {
+        remote.getDataSearch(page, query, listener)
     }
 
     companion object {

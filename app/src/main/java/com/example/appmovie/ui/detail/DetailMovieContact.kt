@@ -1,13 +1,10 @@
 package com.example.appmovie.ui.detail
 
-import com.example.appmovie.data.model.Actor
-import com.example.appmovie.data.model.DetailMovie
-import com.example.appmovie.data.model.HotMovie
-import com.example.appmovie.data.model.VideoMovie
+import com.example.appmovie.data.model.*
 import com.example.appmovie.utils.BasePresenter
 import java.lang.Exception
 
-class DetailMovieContact {
+interface DetailMovieContact {
 
     interface View {
         fun loadContentMovieOnSuccess(detailMovie: DetailMovie)
@@ -22,5 +19,8 @@ class DetailMovieContact {
         fun getVideoMovie(idMovieDetail: Int)
         fun getListRecommend(idMovieDetail: Int)
         fun getActor(idMovieDetail: Int)
+        fun deleteFavorite(idMovieDetail: Int): Boolean
+        fun insertFavorite(favorite: Favorite): Boolean
+        fun checkFavorite(idMovieDetail: Int): Boolean
     }
 }

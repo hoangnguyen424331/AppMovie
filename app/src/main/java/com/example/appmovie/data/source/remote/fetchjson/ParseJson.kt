@@ -75,4 +75,21 @@ class ParseJson {
             getString(VideoMovieEntry.TYPE)
         )
     }
+
+    fun detailExternalParseJson(jsonObject: JSONObject?) = jsonObject?.run {
+        External(
+            getInt(ExternalEntry.ID),
+            getString(ExternalEntry.FACEBOOK),
+            getString(ExternalEntry.TWITTER),
+            getString(ExternalEntry.INSTAGRAM)
+        )
+    }
+
+    fun searchMovieParseJson(jsonObject: JSONObject?) = jsonObject?.run {
+        SearchMovie(
+            getInt(SearchMovieEntry.ID),
+            getString(SearchMovieEntry.TITLE),
+            getString(SearchMovieEntry.URL_IMAGE)
+        )
+    }
 }

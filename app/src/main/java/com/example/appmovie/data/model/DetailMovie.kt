@@ -3,7 +3,7 @@ package com.example.appmovie.data.model
 data class DetailMovie(
     val backdropUrl: String?,
     val posterUrl: String?,
-    val id: Int?,
+    val id: Int,
     val genres: List<Genres>,
     val title: String?,
     val overview: String?,

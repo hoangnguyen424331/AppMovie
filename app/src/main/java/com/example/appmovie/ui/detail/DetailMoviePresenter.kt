@@ -1,15 +1,14 @@
 package com.example.appmovie.ui.detail
 
-import com.example.appmovie.data.model.Actor
-import com.example.appmovie.data.model.DetailMovie
-import com.example.appmovie.data.model.HotMovie
-import com.example.appmovie.data.model.VideoMovie
+import com.example.appmovie.data.model.*
 import com.example.appmovie.data.source.remote.OnFetchDataJsonListener
+import com.example.appmovie.data.source.repository.FavoriteRepository
 import com.example.appmovie.data.source.repository.MovieRepository
 import java.lang.Exception
 
 class DetailMoviePresenter(
-    private val repository: MovieRepository
+    private val repository: MovieRepository,
+    private val favoriteRepository: FavoriteRepository
 ) : DetailMovieContact.Presenter {
 
     private var view: DetailMovieContact.View? = null
@@ -61,6 +60,13 @@ class DetailMoviePresenter(
             }
         })
     }
+
+    override fun deleteFavorite(idMovieDetail: Int) =
+        favoriteRepository.deleteFavorite(idMovieDetail)
+
+    override fun insertFavorite(favorite: Favorite) = favoriteRepository.saveFavorite(favorite)
+
+    override fun checkFavorite(idMovieDetail: Int) = favoriteRepository.checkFavorite(idMovieDetail)
 
     override fun onStart() {}
 
