@@ -85,7 +85,7 @@ class MovieRemoteDataSource : MovieDataSource.Remote {
         }
     }
 
-    override fun getSearchMovie(
+    override fun getDataSearch(
         page: Int,
         query: String,
         listener: OnFetchDataJsonListener<MutableList<SearchMovie?>>
