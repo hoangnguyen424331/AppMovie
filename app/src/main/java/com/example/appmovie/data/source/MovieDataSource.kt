@@ -52,5 +52,10 @@ interface MovieDataSource {
             query: String,
             listener: OnFetchDataJsonListener<MutableList<SearchMovie?>>
         )
+
+        fun getMovieByActor(
+            idMovie: Int,
+            listener: OnFetchDataJsonListener<List<HotMovie>>
+        )
     }
 }

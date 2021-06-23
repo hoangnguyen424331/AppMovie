@@ -64,7 +64,8 @@ class ParseJson {
             imageUrl = getString(DetailActorEntry.IMAGE_URL),
             birthday = getString(DetailActorEntry.BIRTHDAY),
             gender = getInt(DetailActorEntry.GENDER),
-            address = getString(DetailActorEntry.ADDRESS)
+            address = getString(DetailActorEntry.ADDRESS),
+            biography = getString(DetailActorEntry.BIOGRAPHY)
         )
     }
 

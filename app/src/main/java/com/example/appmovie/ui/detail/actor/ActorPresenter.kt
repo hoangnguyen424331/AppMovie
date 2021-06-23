@@ -2,6 +2,7 @@ package com.example.appmovie.ui.detail.actor
 
 import com.example.appmovie.data.model.DetailActor
 import com.example.appmovie.data.model.External
+import com.example.appmovie.data.model.HotMovie
 import com.example.appmovie.data.source.remote.OnFetchDataJsonListener
 import com.example.appmovie.data.source.repository.MovieRepository
 import java.lang.Exception
@@ -34,7 +35,17 @@ class ActorPresenter(private val repository: MovieRepository) : ActorContact.Pre
         })
     }
 
-    override fun getListMovieOfActor(id: Int) {}
+    override fun getListMovieOfActor(id: Int) {
+        repository.getMovieByActor(id, object : OnFetchDataJsonListener<List<HotMovie>> {
+            override fun onSuccess(data: List<HotMovie>) {
+                view?.loadMoviesOnSuccess(data)
+            }
+
+            override fun onError(exception: Exception?) {
+                view?.onError(exception)
+            }
+        })
+    }
 
     override fun onStart() {}
 

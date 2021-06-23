@@ -83,16 +83,15 @@ class GenresFragment : BaseFragment(), GenresContact.View {
         recyclerViewSelected.adapter = adapterGenresSelected
         recyclerViewGenresMovie.apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = adapterGenresMovie
 
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     val gridLayoutManager = recyclerView.layoutManager as GridLayoutManager
-                    val totalItemCount = gridLayoutManager.itemCount.minus(2)
+                    val totalItemCount = gridLayoutManager.itemCount
                     val lastItem = gridLayoutManager.findLastCompletelyVisibleItemPosition()
-                    if (!isLoading && totalItemCount == lastItem) {
+                    if (!isLoading && totalItemCount <= lastItem + Constant.VISIBLE_THRESHOLD) {
                         loadMore()
                         isLoading = true
                     }
