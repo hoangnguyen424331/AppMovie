@@ -7,6 +7,7 @@ data class DetailActor(
     val birthday: String?,
     val gender: Int?,
     val address: String?,
+    val biography: String?
 )
 
 object DetailActorEntry {
@@ -16,4 +17,5 @@ object DetailActorEntry {
     const val BIRTHDAY = "birthday"
     const val GENDER = "gender"
     const val ADDRESS = "place_of_birth"
+    const val BIOGRAPHY = "biography"
 }

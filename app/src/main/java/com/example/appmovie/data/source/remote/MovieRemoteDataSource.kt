@@ -95,6 +95,17 @@ class MovieRemoteDataSource : MovieDataSource.Remote {
         GetJsonFromUrl(listener, KeyEntityType.SEARCH_MOVIE_ITEM).execute(baseUrl)
     }
 
+    override fun getMovieByActor(
+        idActor: Int,
+        listener: OnFetchDataJsonListener<List<HotMovie>>
+    ) {
+        val baseUrl =
+            Constant.BASE_URL + DISCOVER_MOVIE + endParams + Constant.BASE_SORT_POPULAR +
+                    Constant.BASE_WITH_ACTOR + idActor
+
+        GetJsonFromUrl(listener, KeyEntityType.MOVIE_ITEM).execute(baseUrl)
+    }
+
     companion object {
         private const val MOVIE_TYPE = "movie/"
         private const val GENRES_TYPE = "genre/movie/list?"
