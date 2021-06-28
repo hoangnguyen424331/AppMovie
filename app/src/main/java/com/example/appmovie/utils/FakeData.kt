@@ -1,0 +1,17 @@
+package com.example.appmovie.utils
+
+import com.example.appmovie.data.model.SearchMovie
+
+object FakeData {
+    const val QUERY_SEARCH = "nguyen"
+    const val PAGE_SEARCH = 1
+
+    val SEARCH_MODEL = mutableListOf<SearchMovie?>(
+        SearchMovie(
+            445571, "Game Night", "path 1"
+        ),
+        SearchMovie(
+            396371, "Molly's Game", "path 2"
+        )
+    )
+}
