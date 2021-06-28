@@ -3,9 +3,11 @@ package com.example.appmovie.ui.homepage
 import android.view.View
 import com.example.appmovie.R
 import com.example.appmovie.base.BaseFragment
+import com.example.appmovie.extensions.addFragment
 import com.example.appmovie.ui.favorite.FavoriteFragment
 import com.example.appmovie.ui.genres.GenresFragment
 import com.example.appmovie.ui.hotmovie.HotFragment
+import com.example.appmovie.ui.search.SearchFragment
 import com.example.appmovie.utils.ItemBottomNav
 import kotlinx.android.synthetic.main.fragment_home_page.*
 
@@ -17,6 +19,13 @@ class HomePageFragment : BaseFragment() {
     override fun onViewCreated(view: View) {
         onInitViewPager()
         onInitNavigation()
+        onClick()
+    }
+
+    private fun onClick() {
+        edtSearch.setOnClickListener {
+            addFragment(SearchFragment.newInstance(), R.id.mainFragment)
+        }
     }
 
     private fun onInitViewPager() {

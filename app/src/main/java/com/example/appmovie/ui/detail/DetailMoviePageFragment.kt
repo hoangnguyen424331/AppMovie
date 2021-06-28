@@ -21,6 +21,7 @@ import com.example.appmovie.extensions.loadFromUrl
 import com.example.appmovie.ui.detail.actor.ActorFragment
 import com.example.appmovie.ui.detail.actor.adapter.DetailActorAdapter
 import com.example.appmovie.ui.detail.adapter.RecommendAdapter
+import com.example.appmovie.ui.favorite.FavoriteFragment
 import com.example.appmovie.utils.Constant
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import java.lang.Exception
@@ -172,6 +173,7 @@ class DetailMoviePageFragment : BaseFragment(), DetailMovieContact.View {
         imageFavorite.setOnClickListener {
             favorite?.let {
                 updateFavorite(it)
+                FavoriteFragment.isCheckFavorite = !FavoriteFragment.isCheckFavorite
             }
         }
     }

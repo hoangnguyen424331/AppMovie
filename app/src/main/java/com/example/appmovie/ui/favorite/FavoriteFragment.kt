@@ -33,7 +33,7 @@ class FavoriteFragment : BaseFragment(), FavoriteContact.View {
     }
 
     override fun loadFavoriteOnSuccess(movies: MutableList<Favorite>) {
-       favoriteAdapter.setData(movies)
+        favoriteAdapter.setData(movies)
     }
 
     override fun onError(exception: Exception?) {
@@ -55,6 +55,12 @@ class FavoriteFragment : BaseFragment(), FavoriteContact.View {
             onStart()
             onView(this@FavoriteFragment)
         }
+        requireActivity().supportFragmentManager.addOnBackStackChangedListener {
+            if (isCheckFavorite) {
+                favoritePresenter?.onStart()
+                isCheckFavorite = false
+            }
+        }
     }
 
     private fun removeFavorite(id: Int, position: Int) {
@@ -64,5 +70,7 @@ class FavoriteFragment : BaseFragment(), FavoriteContact.View {
 
     companion object {
         fun newInstance() = FavoriteFragment()
+
+        var isCheckFavorite = false
     }
 }
