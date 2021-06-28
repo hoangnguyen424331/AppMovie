@@ -82,6 +82,13 @@ class MovieRepository private constructor(
         remote.getDataSearch(page, query, listener)
     }
 
+    fun getMovieByActor(
+        idActor: Int,
+        listener: OnFetchDataJsonListener<List<HotMovie>>
+    ) {
+        remote.getMovieByActor(idActor, listener)
+    }
+
     companion object {
         private var instance: MovieRepository? = null
 

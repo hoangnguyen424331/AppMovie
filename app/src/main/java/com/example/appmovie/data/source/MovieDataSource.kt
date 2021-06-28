@@ -1,5 +1,6 @@
 package com.example.appmovie.data.source
 
+import com.example.appmovie.data.model.Favorite
 import com.example.appmovie.data.model.GenresMovie
 import com.example.appmovie.data.model.HotMovie
 import com.example.appmovie.data.model.SearchMovie
@@ -9,6 +10,13 @@ import com.example.appmovie.utils.DetailMovieType
 import com.example.appmovie.utils.HotMovieType
 
 interface MovieDataSource {
+
+    interface Local {
+        fun saveMovie(favorite: Favorite): Boolean
+        fun getListFavorite(): MutableList<Favorite>
+        fun deleteFavorite(idMovie: Int): Boolean
+        fun checkFavorite(idMovie: Int): Boolean
+    }
 
     interface Remote {
         fun getHotMovies(
@@ -43,6 +51,11 @@ interface MovieDataSource {
             page: Int,
             query: String,
             listener: OnFetchDataJsonListener<MutableList<SearchMovie?>>
+        )
+
+        fun getMovieByActor(
+            idMovie: Int,
+            listener: OnFetchDataJsonListener<List<HotMovie>>
         )
     }
 }

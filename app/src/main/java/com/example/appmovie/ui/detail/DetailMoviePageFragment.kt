@@ -11,17 +11,17 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import com.example.appmovie.R
 import com.example.appmovie.base.BaseFragment
-import com.example.appmovie.data.model.Actor
-import com.example.appmovie.data.model.DetailMovie
-import com.example.appmovie.data.model.HotMovie
-import com.example.appmovie.data.model.VideoMovie
+import com.example.appmovie.data.model.*
+import com.example.appmovie.data.source.local.MovieLocalDataSource
 import com.example.appmovie.data.source.remote.MovieRemoteDataSource
+import com.example.appmovie.data.source.repository.FavoriteRepository
 import com.example.appmovie.data.source.repository.MovieRepository
 import com.example.appmovie.extensions.addFragment
 import com.example.appmovie.extensions.loadFromUrl
 import com.example.appmovie.ui.detail.actor.ActorFragment
 import com.example.appmovie.ui.detail.actor.adapter.DetailActorAdapter
 import com.example.appmovie.ui.detail.adapter.RecommendAdapter
+import com.example.appmovie.ui.favorite.FavoriteFragment
 import com.example.appmovie.utils.Constant
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import java.lang.Exception
@@ -31,7 +31,9 @@ import kotlin.math.roundToInt
 class DetailMoviePageFragment : BaseFragment(), DetailMovieContact.View {
 
     private var detailMoviePresenter: DetailMoviePresenter? = null
+    private var favorite: Favorite? = null
     private var idMovie: Int? = null
+    private var isFavorite = false
 
     private val actorAdapter by lazy {
         DetailActorAdapter {
@@ -52,6 +54,7 @@ class DetailMoviePageFragment : BaseFragment(), DetailMovieContact.View {
 
         detailMoviePresenter = DetailMoviePresenter(
             MovieRepository.getInstance(MovieRemoteDataSource.getInstance()),
+            FavoriteRepository.getInstance(MovieLocalDataSource.getInstance(requireActivity()))
         )
         arguments?.let {
             idMovie = it.getInt(BUNDLE_ID_DETAIL_MOVIE)
@@ -59,10 +62,12 @@ class DetailMoviePageFragment : BaseFragment(), DetailMovieContact.View {
         detailMoviePresenter?.let {
             it.onView(this)
             idMovie?.let { id ->
-                it.getMovieDetail(id)
-                it.getVideoMovie(id)
-                it.getListRecommend(id)
-                it.getActor(id)
+                it.apply {
+                    getMovieDetail(id)
+                    getVideoMovie(id)
+                    getListRecommend(id)
+                    getActor(id)
+                }
             }
         }
     }
@@ -74,6 +79,9 @@ class DetailMoviePageFragment : BaseFragment(), DetailMovieContact.View {
     }
 
     override fun loadContentMovieOnSuccess(detailMovie: DetailMovie) {
+        detailMovie.run {
+            favorite = Favorite(id, title, posterUrl, tagline, voteAverage)
+        }
         initDataMovieDetail(detailMovie)
     }
 
@@ -156,6 +164,32 @@ class DetailMoviePageFragment : BaseFragment(), DetailMovieContact.View {
                 )
             )
         }
+    }
+
+    override fun onEvent() {
+        imageBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+        imageFavorite.setOnClickListener {
+            favorite?.let {
+                updateFavorite(it)
+                FavoriteFragment.isCheckFavorite = !FavoriteFragment.isCheckFavorite
+            }
+        }
+    }
+
+    private fun updateFavorite(favorite: Favorite) {
+        detailMoviePresenter?.let {
+            if (isFavorite) it.deleteFavorite(favorite.id)
+            else it.insertFavorite(favorite)
+            isFavorite = !isFavorite
+            selectedFavorite()
+        }
+    }
+
+    private fun selectedFavorite() {
+        if (isFavorite) imageFavorite.setImageResource(R.drawable.ic_heart_red)
+        else imageFavorite.setImageResource(R.drawable.ic_heart_default)
     }
 
     companion object {

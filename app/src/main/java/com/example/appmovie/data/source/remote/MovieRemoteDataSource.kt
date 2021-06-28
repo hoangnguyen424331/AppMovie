@@ -85,7 +85,7 @@ class MovieRemoteDataSource : MovieDataSource.Remote {
         }
     }
 
-    override fun getSearchMovie(
+    override fun getDataSearch(
         page: Int,
         query: String,
         listener: OnFetchDataJsonListener<MutableList<SearchMovie?>>
@@ -93,6 +93,17 @@ class MovieRemoteDataSource : MovieDataSource.Remote {
         val baseUrl = Constant.BASE_URL + SEARCH_TYPE + endParams +
                 Constant.BASE_PAGE + page + Constant.BASE_QUERY + query
         GetJsonFromUrl(listener, KeyEntityType.SEARCH_MOVIE_ITEM).execute(baseUrl)
+    }
+
+    override fun getMovieByActor(
+        idActor: Int,
+        listener: OnFetchDataJsonListener<List<HotMovie>>
+    ) {
+        val baseUrl =
+            Constant.BASE_URL + DISCOVER_MOVIE + endParams + Constant.BASE_SORT_POPULAR +
+                    Constant.BASE_WITH_ACTOR + idActor
+
+        GetJsonFromUrl(listener, KeyEntityType.MOVIE_ITEM).execute(baseUrl)
     }
 
     companion object {
